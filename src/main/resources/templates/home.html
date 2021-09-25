@@ -16,12 +16,12 @@
     <p>This application shows the current number of cases reported across the globe</p>
 
     <div class="jumbotron">
-        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <h1 id="value" class="display-4" th:text="${totalReportedCases}"></h1>
         <p class="lead">Total cases reported as of today</p>
         <hr class="my-4">
         <p>
             <span>New cases reported since previous day:</span>
-            <span th:text="${totalNewCases}"></span>
+            <span  th:text="${totalNewCases}"></span>
         </p>
 
     </div>
@@ -60,7 +60,16 @@
 <script>
 $(document).ready(function(){
     $('#data').dataTable();
+
+    var noOfCases = parseInt($('#value').text());
+    //Use the code in the answer above to replace the commas.
+    val = numberWithCommas(noOfCases);
+    $('#value').text(val)
+
 });
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 </script>
 </body>
 
